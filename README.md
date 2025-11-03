@@ -22,7 +22,7 @@ A `main.c` file is provided to test each function and compare results with the s
 ## Build & Run
 
 ```bash
-make        => crea libreria
-make test   => crea libreria + crea test
-./test      => esegue test
+make      → creates the library
+make test → creates the library and builds the test
+./test    → runs the test
 ```
