@@ -1,10 +1,12 @@
-NAME = libasm
+NAME = libasm.a
+TEST = test
 CC = cc
 NASM = nasm
+AR = ar rcs
+RM = rm -f
 CFLAGS = -Wall -Wextra -Werror -g
 NASMFLAGS = -f elf64 -g
 
-SRCS_C = main.c
 SRCS_ASM = ft_strlen.s \
            ft_strcmp.s \
            ft_strdup.s \
@@ -12,26 +14,27 @@ SRCS_ASM = ft_strlen.s \
            ft_read.s \
            ft_write.s
 
-OBJS_C = $(SRCS_C:.c=.o)
 OBJS_ASM = $(SRCS_ASM:.s=.o)
-OBJS = $(OBJS_C) $(OBJS_ASM)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+all: $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(NAME): $(OBJS_ASM)
+	$(AR) $(NAME) $(OBJS_ASM)
+
+$(TEST): $(NAME) main.o
+	$(CC) $(CFLAGS) main.o -L. -lasm -o $(TEST)
+
+main.o: main.c
+	$(CC) $(CFLAGS) -c main.c -o main.o
 
 %.o: %.s
 	$(NASM) $(NASMFLAGS) $< -o $@
 
-all: $(NAME)
-
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS_ASM) main.o
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(TEST)
 
 re: fclean all
 
