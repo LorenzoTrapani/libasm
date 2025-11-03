@@ -11,9 +11,9 @@ section .text
 
 ft_strdup:
     xor rax, rax
-    push rsi
+    push rdi
     call ft_strlen
-    inc rax ; x '/0' xkè rax ora tiene la lunghezza di rsi
+    inc rax ; x '/0' xkè rax ora tiene la lunghezza di rdi
     mov rdi, rax
     call malloc wrt ..plt
     test rax, rax

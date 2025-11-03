@@ -23,4 +23,5 @@ A `main.c` file is provided to test each function and compare results with the s
 
 ```bash
 make
+./libasm
 ```

@@ -23,3 +23,14 @@ ft_write:
     mov rax, -1 ; ritorniamo -1 x errore write
     ret
 
+; Parametri automatici dalla convenzione C
+; Quando chiami ft_write(fd, buf, count) da C:
+; rdi = fd (file descriptor)
+; rsi = buf (puntatore ai dati)
+; rdx = count (quanti byte)
+; rax = 1 (numero syscall write)
+
+
+
+
+
