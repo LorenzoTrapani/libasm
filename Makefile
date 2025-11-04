@@ -21,11 +21,11 @@ all: $(NAME)
 $(NAME): $(OBJS_ASM)
 	$(AR) $(NAME) $(OBJS_ASM)
 
-$(TEST): $(NAME) main.o
-	$(CC) $(CFLAGS) main.o -L. -lasm -o $(TEST)
-
 main.o: main.c
 	$(CC) $(CFLAGS) -c main.c -o main.o
+
+$(TEST): $(NAME) main.o
+	$(CC) $(CFLAGS) main.o -L. -lasm -o $(TEST)
 
 %.o: %.s
 	$(NASM) $(NASMFLAGS) $< -o $@
