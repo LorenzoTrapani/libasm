@@ -13,7 +13,7 @@ ft_read:
     neg rax
     mov rdi, rax
     call __errno_location wrt ..plt
-    mov [rax], rdi ; impostiamo nell'indirizzo di memoria di rax il valore dell'erno di rdi
-    mov rax, -1 ; ritorniamo -1 x errore write
+    mov [rax], rdi
+    mov rax, -1
     ret
 
